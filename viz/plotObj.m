@@ -1,8 +1,3 @@
-%######################################################
-% This code is part of the Matlab-based toolbox
-% OPTIK --- Optimization Toolkit
-% For details see https://github.com/andreasmang/optik
-%######################################################
 function plotObj(f0,omega,x0,n,d1,d2)
 % PLOTOBJ generate a plot of the objective in two variables
 %
@@ -107,3 +102,12 @@ f0  = @(x) x'*Q*x;
 plotObj(f0,[-pi,pi,-pi,pi],zeros(2,1))
 
 end
+
+
+
+
+%######################################################
+% This code is part of the Matlab-based toolbox
+% OPTIK --- Optimization Toolkit
+% For details see https://github.com/andreasmang/optik
+%######################################################

@@ -1,8 +1,3 @@
-%######################################################
-% This code is part of the Matlab-based toolbox
-% OPTIK --- Optimization Toolkit
-% For details see https://github.com/andreasmang/optik
-%######################################################
 clear, close all;
 clc;
 % this script implements gradient descent for a simple
@@ -116,3 +111,12 @@ scatter3(y(1,1:iter),y(2,1:iter),f0eval(1:iter),'r','filled');
 plot3(y(1,1:iter),y(2,1:iter),f0eval(1:iter),'-','LineWidth',2);
 zlim([min(f0s(:))-0.1*min(f0s(:)),max(f0s(:))]);
 hold off;
+
+
+
+
+%######################################################
+% This code is part of the Matlab-based toolbox
+% OPTIK --- Optimization Toolkit
+% For details see https://github.com/andreasmang/optik
+%######################################################

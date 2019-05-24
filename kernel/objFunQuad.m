@@ -12,21 +12,21 @@ function [result] = objFunQuad(Q,x,b,c,flag)
 %    x         current iterate
 %    flag      flag to identify what's going to be computed
 %              options are:
-%              'j'    objective value
-%              'g'    gradient
-%              'h'    hessian
+%              'f'    objective value
+%              'df'   gradient
+%              'd2f'  hessian
 % outputs:
 %    result    value of objective functional or gradient
 
 
 switch flag
-	case 'j'
+	case 'f'
 		% evaluate objective functional of general quadratic
 		result = 0.5*x'*Q*x + b'*x + c;
-	case 'g'
+	case 'df'
 		% evaluate gradient g(x) = Q*x + b
 		result = Q*x + b;
-	case 'h'
+	case 'd2f'
 		% compute hessian Q
 		result = Q;
 	otherwise

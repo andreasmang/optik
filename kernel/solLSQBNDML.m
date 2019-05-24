@@ -1,8 +1,3 @@
-%######################################################
-% This code is part of the Matlab-based toolbox
-% OPTIK --- Optimization Toolkit
-% For details see https://github.com/andreasmang/optik
-%######################################################
 function x = solLSQBNDML(A,b,l,u)
 % SOLLSQBNDML function to solve the convex optimization
 % problem (least squares problem) with box constraints
@@ -21,3 +16,12 @@ function x = solLSQBNDML(A,b,l,u)
 x = quadprog(2*A'*A, -2*A'*b, [], [], [], [], l, u);
 
 end
+
+
+
+
+%######################################################
+% This code is part of the Matlab-based toolbox
+% OPTIK --- Optimization Toolkit
+% For details see https://github.com/andreasmang/optik
+%######################################################
