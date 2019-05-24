@@ -6,4 +6,4 @@
 clear, close all;
 clc;
 
-addpath('data','examples','kernel','homework');
+addpath('data','examples','kernel','homework','viz');

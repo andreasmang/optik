@@ -3,22 +3,21 @@
 % OPTIK --- Optimization Toolkit
 % For details see https://github.com/andreasmang/optik
 %######################################################
-function x = lsqsolcvx(A,b)
-% LSQSOLCVX compute solution of constrained least squares
-% problem based on CVX functions
+function x = solLSQML(A,b)
+% SOLLSQML compute solution of unconstrained least 
+% squares problem, i.e.,
+%         minimize_x ||A*x - b||,
+% based on the default matlab implementation (will 
+% call a QR factorization)
 %
 % inputs:
 %    A         n x m matrix
 %    b         right hand side (vector)
 % outputs:
-%    x         solution
+%    x         solution of least-squares problem
 
-n = size(A,2);
-
-% call cvx functionality
-cvx_begin
-	variable x(n);
-	minimize(norm(A*x - b))
-cvx_end
+% we use backslash, which will default to
+% a QR fractorization
+x = A\b;
 
 end

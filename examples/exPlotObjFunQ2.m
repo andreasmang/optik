@@ -18,6 +18,6 @@ A = [ 2, 0; 0,  0]; b = zeros(n,1); % semi-definite
 x0 = zeros(n,1);
 
 % define function handle for objective
-j = @(x) quadobj(A,x,b,0,'j');
+j = @(x) objFunQuad(A,x,b,0,'j');
 
-plotobj(j,[-1,1,-1,1],x0);
+plotObj(j,[-1,1,-1,1],x0);

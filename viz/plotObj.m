@@ -3,8 +3,8 @@
 % OPTIK --- Optimization Toolkit
 % For details see https://github.com/andreasmang/optik
 %######################################################
-function plotobj(f0,omega,x0,n,d1,d2)
-% plotobj generate a plot of the objective in two variables
+function plotObj(f0,omega,x0,n,d1,d2)
+% PLOTOBJ generate a plot of the objective in two variables
 %
 % inputs:
 %    f0        function handle; takes n-d array as input
@@ -104,6 +104,6 @@ Q = diag([0.5,0.5]);
 
 f0  = @(x) x'*Q*x;
 
-plotobj(f0,[-pi,pi,-pi,pi],zeros(2,1))
+plotObj(f0,[-pi,pi,-pi,pi],zeros(2,1))
 
 end

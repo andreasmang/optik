@@ -3,8 +3,8 @@
 % OPTIK --- Optimization Toolkit
 % For details see https://github.com/andreasmang/optik
 %######################################################
-function [result] = lsqobj(A,x,b,flag)
-% LSQOBJ implementation of objective function for
+function [result] = objFunLSQ(A,x,b,flag)
+% OBJFUNLSQ implementation of objective function for
 % least squares problem
 %
 % inputs:

@@ -3,9 +3,8 @@
 % OPTIK --- Optimization Toolkit
 % For details see https://github.com/andreasmang/optik
 %######################################################
-function [result] = quadobj(Q,x,b,c,flag)
-% QUADOBJ implementation of objective function for
-% quadratic function
+function [result] = objFunQuad(Q,x,b,c,flag)
+% OBJFUNQUAD implementation of quadratic
 %
 % inputs:
 %    Q         n x n matrix

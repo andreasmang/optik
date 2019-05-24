@@ -3,11 +3,11 @@
 % OPTIK --- Optimization Toolkit
 % For details see https://github.com/andreasmang/optik
 %######################################################
-function x = lsqsolbnd(A,b,l,u)
-% LSQSOLBND function to solve the convex optimization problem
-% (least squares problem) with box constraints / bounds
-% on x, i.e.,
-%    min_x ||Ax - b||_2 subject to l <= x <= u
+function x = solLSQBNDML(A,b,l,u)
+% SOLLSQBNDML function to solve the convex optimization
+% problem (least squares problem) with box constraints
+% / bounds on x, i.e.,
+%    minimize_x ||Ax - b||_2 subject to l <= x <= u
 %
 % inputs:
 %    A         n x m matrix
