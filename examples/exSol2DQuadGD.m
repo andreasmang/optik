@@ -51,7 +51,6 @@ f0eval = zeros(itermax,1);
 
 % perform gradient descent with analytical line search
 for iter = 1:itermax
-
 	f0eval(iter) = f0(x);
 
 	% minimizer is x^\star = (0,0)^\T

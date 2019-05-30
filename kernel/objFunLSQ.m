@@ -1,4 +1,4 @@
-function [result] = objFunLSQ(A,x,b,flag)
+function [f,df,d2f] = objFunLSQ(A,x,b)
 % OBJFUNLSQ implementation of objective function for
 % least squares problem
 %
@@ -6,33 +6,28 @@ function [result] = objFunLSQ(A,x,b,flag)
 %    A         n x m matrix
 %    b         right hand side (vector)
 %    x         current iterate
-%    flag      flag to identify what's going to be computed
-%              options are:
-%              'f'    objective value
-%              'df'   gradient
-%              'd2f'  hessian
 % outputs:
-%    result    value of objective functional or gradient
+%    f         objective value
+%    df        gradient
+%    d2f       hessian
 
 
-switch flag
-	case 'f'
-		% evaluate objective functional j(x) = ||Ax-b||^2_2
-		dr = A*x - b;
-		result = 0.5*dr(:)'*dr(:);
-	case 'df'
-		% evaluate gradient g(x) = A^\T(Ax-b)
-		dr = A*x - b;
-		result = A'*dr;
-	case 'd2f'
-		% compute hessian A^\T A
-		result = A'*A;
-	otherwise
-		error('flag not defined');
+% evaluate objective functional j(x) = ||Ax-b||^2_2
+dr = A*x - b;
+f  = 0.5*dr(:)'*dr(:);
+
+if nargout > 1
+	% evaluate gradient
+	df = A'*dr;
+end
+
+if nargout > 2
+	% compute hessian A^\T A
+	df2 = A'*A;
 end
 
 
-end
+end % end function
 
 
 

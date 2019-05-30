@@ -1,9 +1,7 @@
-function [result] = objFunQuad(Q,x,b,c,flag)
-% OBJFUNQUAD implementation of quadratic
+function result = objFunRosenbrock(x)
+% OBJFUNROSENBROCK implementation of rosenbrock function
 %
 % inputs:
-%    Q         n x n matrix
-%    b         vector (linear part)
 %    x         current iterate
 %    flag      flag to identify what's going to be computed
 %              options are:
@@ -14,19 +12,24 @@ function [result] = objFunQuad(Q,x,b,c,flag)
 %    result    value of objective functional or gradient
 
 
+
 switch flag
 	case 'f'
 		% evaluate objective functional of general quadratic
-		result = 0.5*x'*Q*x + b'*x + c;
+		result = ;
 	case 'df'
 		% evaluate gradient g(x) = Q*x + b
-		result = Q*x + b;
+		result = ;
 	case 'd2f'
 		% compute hessian Q
-		result = Q;
+		result = ;
 	otherwise
 		error('flag not defined');
 end
+
+
+end
+
 
 
 end
