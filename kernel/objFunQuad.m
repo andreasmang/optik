@@ -1,35 +1,32 @@
-function [result] = objFunQuad(Q,x,b,c,flag)
+function [f,df,d2f] = objFunQuad(Q,x,b,c)
 % OBJFUNQUAD implementation of quadratic
 %
 % inputs:
 %    Q         n x n matrix
 %    b         vector (linear part)
 %    x         current iterate
-%    flag      flag to identify what's going to be computed
-%              options are:
-%              'f'    objective value
-%              'df'   gradient
-%              'd2f'  hessian
+%
 % outputs:
-%    result    value of objective functional or gradient
+%    f         objective value
+%    df        gradient
+%    d2f       hessian
 
 
-switch flag
-	case 'f'
-		% evaluate objective functional of general quadratic
-		result = 0.5*x'*Q*x + b'*x + c;
-	case 'df'
-		% evaluate gradient g(x) = Q*x + b
-		result = Q*x + b;
-	case 'd2f'
-		% compute hessian Q
-		result = Q;
-	otherwise
-		error('flag not defined');
+% evaluate objective functional of general quadratic
+f = 0.5*x'*Q*x + b'*x + c;
+
+% evaluate gradient
+if nargout > 1
+    df = Q*x + b;
+end
+
+% compute hessian matrix
+if nargout > 2
+    df2 = Q;
 end
 
 
-end
+end % end function
 
 
 

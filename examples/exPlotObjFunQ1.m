@@ -9,9 +9,9 @@ b = zeros(m,1);
 x0 = zeros(n,1);
 
 % define function handle for objective
-j = @(x) objFunQuad(A,x,b,0,'f');
+objfun = @(x) objFunQuad(A,x,b,0);
 
-plotObj(j,[-1,1,-1,1],x0);
+plotObj(objfun,[-1,1,-1,1],x0);
 
 
 

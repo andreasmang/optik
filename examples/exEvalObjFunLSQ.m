@@ -7,12 +7,19 @@ m = 32; n = 32;
 A = randn(n,m);
 b = randn(m,1);
 
-% define function handle for objective
-j = @(x,flag) objFunLSQ(A,x,b,flag);
+% define function handle for objective function
+objfun = @(x) objFunLSQ(A,x,b);
 
+% setup random vector
 x = randn(n,1);
-fprintf('objective value:        %e\n', j(x,'f'));
-fprintf('norm of gradient:       %e\n', norm(j(x,'df')));
+
+% evaluate objective for random vector x
+[f, df] = objfun(x);
+
+% display value of objective function and norm
+% of gradient
+fprintf('objective value:  %e\n', f);
+fprintf('norm of gradient: %e\n', norm(df));
 
 
 

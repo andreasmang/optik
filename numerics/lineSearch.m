@@ -1,5 +1,5 @@
-function [t,xt,lsiter,success] = lineSearchBT(objfun,fc,xc,dx)
-% LINESEARCHBT implements back tracking line search
+function [t,xt,lsiter,success] = lineSearch(objfun,fc,xc,dx)
+% LINESEARCH implements back tracking line search
 %
 % inputs:
 %    objfun    function handle for objective function

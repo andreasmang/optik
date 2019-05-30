@@ -21,26 +21,25 @@ g0 = gc;
 t    = 1.0;
 iter = 0;
 while ~any(stop)
-	% gradient descent search direction
-	dx = -t.*dx;
+    % gradient descent search direction
+    dx = -t.*dx;
 
-	[t,xt] = lineSearchBT(objfun,fc,xc,dx);
+    [t,xt] = lineSearch(objfun,fc,xc,dx);
 
-	if (t == 0)
-		warning('line search failed');
-		stop = true;
-	else
-		% check for convergence
-		stop(1) = norm(gc) < tolg*norm(g0);
-		stop(2) = iter >= itermax;
-	end
+    if (t == 0), warning('line search failed'); break; end
 
-	xc = xt;
-	[fc,gc] = objfun(xc); dx = gc;
-	iter = iter + 1;
+    xc = xt;
+
+    [fc,gc] = objfun(xc); dx = gc;
+
+    iter = iter + 1;
+
+    % check for convergence
+    stop(1) = norm(gc) < tolg*norm(g0);
+    stop(2) = iter >= itermax;
 
     dbgmsg = sprintf('iter=%-2i fc=%e ||gc||_2=%e\n',iter,fc,norm(gc));
-	fprintf(dbgmsg);
+    fprintf(dbgmsg);
 end
 
 x = xc;

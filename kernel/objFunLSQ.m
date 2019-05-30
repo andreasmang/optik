@@ -6,6 +6,7 @@ function [f,df,d2f] = objFunLSQ(A,x,b)
 %    A         n x m matrix
 %    b         right hand side (vector)
 %    x         current iterate
+%
 % outputs:
 %    f         objective value
 %    df        gradient
@@ -17,13 +18,13 @@ dr = A*x - b;
 f  = 0.5*dr(:)'*dr(:);
 
 if nargout > 1
-	% evaluate gradient
-	df = A'*dr;
+    % evaluate gradient
+    df = A'*dr;
 end
 
 if nargout > 2
-	% compute hessian A^\T A
-	df2 = A'*A;
+    % compute hessian A^\T A
+    df2 = A'*A;
 end
 
 
