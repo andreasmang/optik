@@ -12,6 +12,9 @@ function [f,df,d2f] = objFunLSQ(A,x,b)
 %    df        gradient
 %    d2f       hessian
 
+if nargin < 1
+	runMinEx(); return;
+end
 
 % evaluate objective functional j(x) = ||Ax-b||^2_2
 dr = A*x - b;
@@ -24,11 +27,35 @@ end
 
 if nargout > 2
     % compute hessian A^\T A
-    df2 = A'*A;
+    d2f = A'*A;
 end
 
 
 end % end function
+
+
+
+%//////////////////////////////////////////////////////
+function runMinEx()
+
+n = 100;
+
+% construct solution
+x0 = rand(n,1);
+
+% create SPD matrix with condition number 10^6
+d  = logspace(0,-6,n);
+A  = sprandsym(n,1,d);
+
+% construct right hand side
+b = A*x0 + 1e-3.*rand(n,1);
+
+objfun = @(x) objFunLSQ(A,x,b);
+
+checkDerivative(objfun,x0);
+
+end % end function
+%//////////////////////////////////////////////////////
 
 
 
