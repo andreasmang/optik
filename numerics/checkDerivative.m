@@ -1,10 +1,13 @@
-function checkDerivative(fctn,x0)
+function checkDerivative( fctn, x0 )
 %CHECKDERIVATIVE function to check if derivative
 %of objective is correct (uses taylor expansion)
 %
 % inputs:
-%   fctn      function handle for objective function
-%   x0        initial guess
+%   fctn    function handle for objective function
+%   x0      initial guess
+%
+% author:   Andreas Mang
+% date:     09/18/2019
 
 nrep = 46;
 

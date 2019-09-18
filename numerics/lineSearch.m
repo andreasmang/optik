@@ -1,11 +1,12 @@
-function [t,xt,lsiter,success] = lineSearch(objfun,fc,xc,dx)
+function [t,xt,lsiter,success] = lineSearch( objfun, fc, xc, sdir, verbosity )
 % LINESEARCH implements back tracking line search
 %
 % inputs:
-%    objfun    function handle for objective function
-%    fc        current value of objective function
-%    xc        current iterate
-%    dx        update of iterate / search direction
+%   objfun     function handle for objective function
+%   fc         current value of objective function
+%   xc         current iterate
+%   sdir       update for iterate / search direction
+%   verbosity  verbosity level
 %
 % outputs:
 %   t          step length
@@ -13,18 +14,26 @@ function [t,xt,lsiter,success] = lineSearch(objfun,fc,xc,dx)
 %   lsiter     number of line search steps
 %   success    flag to determine if line search was
 %              successful
+%
+% author:      Andreas Mang
+% date:        09/18/2019
+
+if nargin < 5, verbosity = 1; end
+
 
 t = 1;    % initial step size
 n = 10;   % number of trials
 
 % do the line search
 for i = 1 : n
-    xt = xc + t.*dx;                % compute test value vt
+    xt = xc + t.*sdir;              % compute test value xt
 
-    ft = objfun(xt);                % evalute objective functional
+    ft = objfun( xt );              % evalute objective functional
 
-    dbgmsg = sprintf('line search: i=%-2i fc=%e ft=%e df=%+e ||dx||_2=%e t=%.2f\n',i,fc,ft,fc-ft,norm(t.*dx(:)),t);
-    fprintf(dbgmsg);
+    if verbosity > 1
+        dbgmsg = sprintf('line search: i=%-2i fc=%e ft=%e df=%+e ||sdir||_2=%e t=%.2f\n',i,fc,ft,fc-ft,norm(t.*sdir(:)),t);
+        fprintf(dbgmsg);
+    end
 
     success = (ft < fc);            % compare
 
