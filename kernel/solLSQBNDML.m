@@ -15,7 +15,7 @@ function x = solLSQBNDML(A,b,l,u)
 % call the Matlab solver (quadratic programming)
 x = quadprog(2*A'*A, -2*A'*b, [], [], [], [], l, u);
 
-end
+end % end of function
 
 
 

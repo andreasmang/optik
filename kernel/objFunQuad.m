@@ -11,9 +11,8 @@ function [f,df,d2f] = objFunQuad(Q,x,b,c)
 %    df        gradient
 
 %    d2f       hessian
-if nargin < 1
-	runMinEx(); return;
-end
+
+if nargin < 1, runMinEx(); return; end
 
 
 % evaluate objective functional of general quadratic

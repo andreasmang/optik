@@ -1,10 +1,12 @@
-function [x] = gradientDescent(objfun,xc)
+function [x] = gradientDescent( objfun, xc )
 % GRADIENTDESCENT gradient descent
 %
 % inputs:
 %    objfun    function handle for objective function
 %    fc        current value of objective function
-
+%
+% input:
+%    x         solution of problem
 
 % define stopping conditions
 stop    = zeros(2,1);

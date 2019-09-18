@@ -12,9 +12,7 @@ function [f,df,d2f] = objFunLSQ(A,x,b)
 %    df        gradient
 %    d2f       hessian
 
-if nargin < 1
-	runMinEx(); return;
-end
+if nargin < 1, runMinEx(); return; end
 
 % evaluate objective functional j(x) = ||Ax-b||^2_2
 dr = A*x - b;

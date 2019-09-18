@@ -28,11 +28,7 @@ switch flag
 end
 
 
-end
-
-
-
-end
+end % end of function
 
 
 

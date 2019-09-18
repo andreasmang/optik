@@ -1,13 +1,8 @@
-%######################################################
-% This code is part of the Matlab-based toolbox
-% OPTIK --- Optimization Toolkit
-% For details see https://github.com/andreasmang/optik
-%######################################################
 function x = solLSQML(A,b)
-% SOLLSQML compute solution of unconstrained least 
+% SOLLSQML compute solution of unconstrained least
 % squares problem, i.e.,
 %         minimize_x ||A*x - b||,
-% based on the default matlab implementation (will 
+% based on the default matlab implementation (will
 % call a QR factorization)
 %
 % inputs:
@@ -20,4 +15,13 @@ function x = solLSQML(A,b)
 % a QR fractorization
 x = A\b;
 
-end
+end % end of function
+
+
+
+
+%######################################################
+% This code is part of the Matlab-based toolbox
+% OPTIK --- Optimization Toolkit
+% For details see https://github.com/andreasmang/optik
+%######################################################

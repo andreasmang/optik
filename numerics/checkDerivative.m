@@ -1,6 +1,12 @@
 function checkDerivative(fctn,x0)
+%CHECKDERIVATIVE function to check if derivative
+%of objective is correct (uses taylor expansion)
+%
+% inputs:
+%   fctn      function handle for objective function
+%   x0        initial guess
 
-nrep=46;
+nrep = 46;
 
 fprintf('%s\n',repmat('-' , [1,nrep]));
 fprintf('derivative check for objective\n<%s>\n',func2str(fctn));
@@ -24,9 +30,9 @@ T2 = zeros([numel(h),1]);
 % do derivative check
 for j=1:length(h)
     hh = h(j)*h(j);
-	ft = fctn(x0+h(j)*v);					    % function value
-	T0(j) = norm(f0-ft);						% TaylorPoly 0
-	T1(j) = norm(f0+h(j)*dfv - ft);				% TaylorPoly 1
+	ft = fctn(x0+h(j)*v);					        % function value
+	T0(j) = norm(f0-ft);						    % TaylorPoly 0
+	T1(j) = norm(f0+h(j)*dfv - ft);				    % TaylorPoly 1
  	T2(j) = norm(f0+h(j)*dfv+0.5*hh*vtd2fv - ft);	% TaylorPoly 2
     % print result
     fprintf('%9.4e  %9.4e  %9.4e  %9.4e\n',h(j),T0(j),T1(j),T2(j));
@@ -39,3 +45,12 @@ fprintf('T2 = |f0+h*df''*v+0.5*h^2*v''*H*v-ft|\n');
 fprintf('%s\n',repmat('-' , [1,nrep]));
 
 end
+
+
+
+
+%######################################################
+% This code is part of the Matlab-based toolbox
+% OPTIK --- Optimization Toolkit
+% For details see https://github.com/andreasmang/optik
+%######################################################
