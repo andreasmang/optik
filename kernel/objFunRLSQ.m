@@ -1,11 +1,13 @@
-function [f,df,d2f] = objFunLSQ( x, A, b )
-%OBJFUNLSQ implementation of objective function for
-%least squares problem
+function [f,df,d2f] = objFunRLSQ( x, A, b, L, alpha )
+%OBJFUNRLSQ implementation of objective function for
+%regularized least squares problem
 %
 % inputs:
-%    A         n x m matrix
-%    b         right hand side (vector)
-%    x         current iterate
+%   A          n x m matrix
+%   b          right hand side (vector)
+%   x          current iterate
+%   L          regularization operator
+%   alpha      regularization parameter
 %
 % outputs:
 %    f         objective value
@@ -14,21 +16,22 @@ function [f,df,d2f] = objFunLSQ( x, A, b )
 
 if nargin < 1, runSelfTest(); return; end
 
-% evaluate objective functional f(x) = 0.5*||Ax-b||^2_2
-dr = A*x - b;
-f  = 0.5*dr(:)'*dr(:);
+% evaluate objective functional
+% f(x) = 0.5*||Ax-b||^2_2 + ||L*x||^2_2
+f = % ADD YOUR CODE HERE
 
-% evaluate gradient
+% evaluate gradient A^T(A x - b) + alpha L^T L x
 if nargout > 1
-    df = A'*dr;
+    df = % ADD YOUR CODE HERE
 end
 
-% compute hessian A^T A
+% evaluate hessian A^T A + alpha*L^T L
 if nargout > 2
-    d2f = A'*A;
+    d2f = % ADD YOUR CODE HERE
 end
 
 end % end function
+
 
 
 
@@ -47,10 +50,13 @@ A = sprandsym( n, 1, d );
 % construct right hand side (we add small perturbation
 % so that b is not (likely) in col(A))
 eta = 1e-3;
-b   = A*x0 + eta*rand(n,1);
+b = A*x0 + eta*rand(n,1);
+
+% construct regulariation operator
+L = eye( n );
 
 % define function handle for objective function
-objfun = @(x) objFunLSQ( x, A, b );
+objfun = @(x) objFunRLSQ( x, A, b, L, 0.1 );
 
 % perform derivative check
 checkDerivative( objfun, x0 );

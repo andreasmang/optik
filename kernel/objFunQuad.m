@@ -1,56 +1,62 @@
-function [f,df,d2f] = objFunQuad(Q,x,b,c)
-% OBJFUNQUAD implementation of quadratic
+function [f, df, d2f] = objFunQuad( x, Q, b, c )
+%OBJFUNQUAD evaluate objective function, gradient, and hessian
+%for quadratic problem
 %
 % inputs:
+%    x         current iterate
 %    Q         n x n matrix
 %    b         vector (linear part)
-%    x         current iterate
+%    c         constant vector
 %
 % outputs:
 %    f         objective value
 %    df        gradient
-
 %    d2f       hessian
 
-if nargin < 1, runMinEx(); return; end
+if nargin < 1, runSelfTest(); return; end
 
+% evaluate objective function
+% f(x) = 0.5 x^T Q x + b^T x + c
+f = % ADD YOUR CODE HERE
 
-% evaluate objective functional of general quadratic
-f = 0.5*x'*Q*x + b'*x + c;
-
-% evaluate gradient
+% evaluate gradient of f(x)
 if nargout > 1
-    df = Q*x + b;
+    df = % ADD YOUR CODE HERE
 end
 
-% compute hessian matrix
+% compute hessian matrix for f(x)
 if nargout > 2
-    d2f = Q;
+    d2f = % ADD YOUR CODE HERE
 end
-
 
 end % end function
 
 
+
+
 %//////////////////////////////////////////////////////
-function runMinEx()
+function runSelfTest()
 
 n = 100;
 
 % construct solution
-x0 = rand(n,1);
+x0 = rand( n, 1 );
 
 % create SPD matrix with condition number 10^6
-d  = logspace(0,-6,n);
-A  = sprandsym(n,1,d);
+d = logspace( 0, -6, n );
+Q = sprandsym( n, 1, d );
 
-% construct right hand side
-b = A*x0 + 1e-3.*rand(n,1);
+% construct right hand side (we add small perturbation
+% so that b is not (likely) in col(A))
+eta = 1e-3;
+b = Q*x0 + eta*rand(n,1);
 c = rand(1);
 
-objfun = @(x) objFunQuad(A,x,b,c);
+% define function handle for objective function
+objfun = @(x) objFunQuad( x, Q, b, c );
 
-checkDerivative(objfun,x0);
+% perform derivative check
+checkDerivative( objfun, x0 );
 
 end % end function
 %//////////////////////////////////////////////////////
