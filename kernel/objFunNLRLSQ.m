@@ -17,7 +17,7 @@ function [f, df, d2f] = objFunNLRLSQ( x, A, b, L, alpha )
 if nargin < 1, runSelfTest(); return; end
 
 % evaluate objective function
-% f(x) = ||sin(A x)-b||_2^2 + alpha ||L x||_2^2
+% f(x) = ||sin(A*x)-b||_2^2 + alpha*||Lx||_2^2
 f = % ADD YOUR CODE HERE
 
 % evaluate gradient of f(x)

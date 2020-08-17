@@ -20,12 +20,12 @@ if nargin < 1, runSelfTest(); return; end
 % f(x) = 0.5*||Ax-b||^2_2 + ||L*x||^2_2
 f = % ADD YOUR CODE HERE
 
-% evaluate gradient A^T(A x - b) + alpha L^T L x
+% evaluate gradient of f(x)
 if nargout > 1
     df = % ADD YOUR CODE HERE
 end
 
-% evaluate hessian A^T A + alpha*L^T L
+% evaluate hessian matrix of f(x)
 if nargout > 2
     d2f = % ADD YOUR CODE HERE
 end
