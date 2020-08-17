@@ -1,60 +1,67 @@
-dfunction checkDerivative( fctn, x0 )
+function checkDerivative( fctn, x0 )
 %CHECKDERIVATIVE function to check if derivative
 %of objective is correct (uses taylor expansion)
 %
 % inputs:
 %   fctn    function handle for objective function
 %   x0      initial guess
-%
-% author:   Andreas Mang
-% date:     09/18/2019
 
+% number of repetitons
 nrep = 46;
 
-fprintf('%s\n',repmat('-' , [1,nrep]));
-fprintf('derivative check for objective\n<%s>\n',func2str(fctn));
-fprintf('%s\n',repmat('-' , [1,nrep]));
-fprintf(' %s %11s %11s %11s\n','h', 'T0', 'T1', 'T2');
-fprintf('%s\n',repmat('-' , [1,nrep]));
+fprintf( '%s\n', repmat( '-', [1, nrep] ) );
+fprintf( 'derivative check for objective\n<%s>\n', func2str( fctn ) );
+fprintf( '%s\n', repmat( '-', [1, nrep] ) );
+fprintf( ' %s %11s %11s %11s\n', 'h', 't0', 't1', 't2' );
+fprintf( '%s\n', repmat( '-', [1, nrep] ) );
 
-h = logspace(-1,-10,10); % step size
-v = rand(size(x0));      % random perturbation
+h = logspace( -1, -10, 10 ); % step size
+v = rand( size( x0 ) );      % random perturbation
 
-% get objective value, gradient, and hessian
-[f0,df,d2f] = fctn(x0);     % evaluate objective function
-dfv         = df'*v;
-vtd2fv      = v'*d2f*v;
+% evaluate objective function
+[f0, df, d2f] = fctn( x0 );
+
+% compute inner product of gradient and perturbation
+dfv = df'*v;
+
+% compute v^T H v
+if isa( d2f, 'function_handle' )
+    vtd2fv = v'*d2f(v);
+else
+    vtd2fv = v'*d2f*v;
+end
 
 % allocate history
-T0 = zeros([numel(h),1]);
-T1 = zeros([numel(h),1]);
-T2 = zeros([numel(h),1]);
+t0 = zeros( [numel(h), 1] );
+t1 = zeros( [numel(h), 1] );
+t2 = zeros( [numel(h), 1] );
 
 % do derivative check
-for j=1:length(h)
-    hh = h(j)*h(j);
-	ft = fctn(x0+h(j)*v);					        % function value
-	T0(j) = norm(f0-ft);						    % TaylorPoly 0
-	T1(j) = norm(f0+h(j)*dfv - ft);				    % TaylorPoly 1
- 	T2(j) = norm(f0+h(j)*dfv+0.5*hh*vtd2fv - ft);	% TaylorPoly 2
-    % print result
-    fprintf('%9.4e  %9.4e  %9.4e  %9.4e\n',h(j),T0(j),T1(j),T2(j));
+for j = 1 : length( h )
+    hh = h(j )*h( j );
+    ft = fctn( x0 + h(j)*v );
+    t0(j) = % ADD YOUR CODE HERE
+    t1(j) = % ADD YOUR CODE HERE
+    t2(j) = % ADD YOUR CODE HERE
+
+    % display to user
+    fprintf('%9.4e  %9.4e  %9.4e  %9.4e\n', h(j), t0(j), t1(j), t2(j) );
 end
 
-fprintf('%s\n',repmat('-' , [1,nrep]));
-fprintf('T0 = |f0 - ft|\n');
-fprintf('T1 = |f0+h*df''-ft|\n');
-fprintf('T2 = |f0+h*df''*v+0.5*h^2*v''*H*v-ft|\n');
-fprintf('%s\n',repmat('-' , [1,nrep]));
+fprintf('%s\n', repmat( '-' , [1, nrep] ) );
+fprintf('t0 = |f0 - ft|\n');
+fprintf('t1 = |f0+h*df''-ft|\n');
+fprintf('t2 = |f0+h*df''*v+0.5*h^2*v''*H*v-ft|\n');
+fprintf('%s\n', repmat( '-' , [1, nrep] ) );
 
 figure()
-loglog(h,T0)
+loglog( h, t0 );
 hold on
-loglog(h,T1)
-loglog(h,T2)
+loglog( h, t1 );
+loglog( h, t2 );
 hold off
 
-end
+end % end of function
 
 
 
