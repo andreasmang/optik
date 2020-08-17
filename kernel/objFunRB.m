@@ -1,31 +1,14 @@
-function result = objFunRosenbrock(x)
-% OBJFUNROSENBROCK implementation of rosenbrock function
+function [f,df,d2f] = objFunRB( x )
+%OBJFUNROSENBROCK implementation of rosenbrock function
 %
 % inputs:
 %    x         current iterate
-%    flag      flag to identify what's going to be computed
-%              options are:
-%              'f'    objective value
-%              'df'   gradient
-%              'd2f'  hessian
+%
 % outputs:
-%    result    value of objective functional or gradient
+%    f         objective value
+%    df        gradient
+%    d2f       hessian
 
-
-
-switch flag
-	case 'f'
-		% evaluate objective functional of general quadratic
-		result = ;
-	case 'df'
-		% evaluate gradient g(x) = Q*x + b
-		result = ;
-	case 'd2f'
-		% compute hessian Q
-		result = ;
-	otherwise
-		error('flag not defined');
-end
 
 
 end % end of function

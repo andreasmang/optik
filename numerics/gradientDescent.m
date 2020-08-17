@@ -11,7 +11,7 @@ function [xsol] = gradientDescent( objfun, xc )
 % author:   Andreas Mang
 % date:     09/18/2019
 
-verbosity = 2;
+verbosity = 1;
 
 dline = repmat('-',1,100);
 

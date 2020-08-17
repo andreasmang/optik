@@ -1,4 +1,4 @@
-function checkDerivative( fctn, x0 )
+dfunction checkDerivative( fctn, x0 )
 %CHECKDERIVATIVE function to check if derivative
 %of objective is correct (uses taylor expansion)
 %
@@ -46,6 +46,13 @@ fprintf('T0 = |f0 - ft|\n');
 fprintf('T1 = |f0+h*df''-ft|\n');
 fprintf('T2 = |f0+h*df''*v+0.5*h^2*v''*H*v-ft|\n');
 fprintf('%s\n',repmat('-' , [1,nrep]));
+
+figure()
+loglog(h,T0)
+hold on
+loglog(h,T1)
+loglog(h,T2)
+hold off
 
 end
 

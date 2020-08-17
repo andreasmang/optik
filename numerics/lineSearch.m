@@ -37,10 +37,12 @@ for i = 1 : n
 
     success = (ft < fc);            % compare
 
-    if success, break; end;         % if success, we're done
+    if success, break; end          % if success, we're done
 
     t = t/2;                        % reduce t
 end
+
+lsiter = i;
 
 if success, return; end             % well done
 t = 0; xt = xc;                     % take no action
