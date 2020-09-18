@@ -12,4 +12,4 @@ Some examples can be found in the examples folder.
 ## Usage
 Before you run any of the examples, it is advised to run the startup script:
 
-```startup```
+```istart```
