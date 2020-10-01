@@ -24,9 +24,13 @@ L = eye( numel(x0) );
 % setup objective function
 objfun = @(x) objFunRLSQ( x, A, b, L, alpha );
 
+method = 'gd'; % gradient descent
+% method = 'newton'; % newton method
+
 % execute iterative solver
 xisol = runOptimizer( objfun, x0, 'gd' );
 
+% display computed solution
 fprintf( ' true solution:      x = (%6e, %6e, %6e)\n', xtrue );
 fprintf( ' numerical solution: x = (%6e, %6e, %6e)\n', xisol );
 
