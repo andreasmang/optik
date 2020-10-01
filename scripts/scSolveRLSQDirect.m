@@ -16,25 +16,56 @@ eta = 0.05*norm( xtrue );
 per = eta*randn(3,1);
 b = A*xtrue + per;
 
-% define initial guess for solver
-x0 = zeros( size(xtrue) );
-
 % compute regularization operator
 L = eye( numel(x0) );
 
-% compute solution using matlab's backslash
-% (directly solve linear system)
-xsol1 = A \ b;
+% set up list of regularization parameters alpha
+alphalist = logspace(-6,6,13);
+
+% get number of different alphas
+m = numel( alphalist );
+
+% create vector to store individual solution
+xsol = zeros( [m+1, 3] );
+
+% compute solution using matlab's backslash command
+% (direct solver for linear system)
+xsol(1,:) = A \ b;
 
 % solve regularized problem (normal equations)
-xsol2 = % ADD YOUR CODE HERE
-
-
 fprintf(' true solution:       x = (%+-6e, %+-6e, %+-6e)\n', xtrue);
-fprintf(' numerical solutions: x = (%+-6e, %+-6e, %+-6e)\n', xsol1);
-fprintf('                      x = (%+-6e, %+-6e, %+-6e)\n', xsol2);
-fprintf(' relative error:      %e\n', norm(xsol1 - xtrue)/norm(xtrue));
-fprintf('                      %e\n', norm(xsol2 - xtrue)/norm(xtrue));
+for i = 1 : m
+    alpha = alphalist(i);
+    xsol(i+1,:) = % ADD YOUR CODE HERE
+end
+
+% display solutions to user
+fprintf('\n');
+fprintf(' numerical solution: \n' );
+fprintf(' alpha = %.2e     x = (%+-6e, %+-6e, %+-6e)\n', 0, xsol(1,:) );
+for i = 2 : m
+    fprintf(' alpha = %.2e     x = (%+-6e, %+-6e, %+-6e)\n', alphalist(i), xsol(i+1,:) );
+end
+
+% compute and display relative error
+fprintf('\n');
+fprintf(' relative error:\n' );
+
+% error for unregularized solution
+err(1) = % ADD YOUR CODE HERE
+fprintf(' alpha = %.2e     %e\n', 0, err(1) );
+
+% compute errors for regularized solution
+for i = 2 : m + 1
+    err(i) = % ADD YOUR COD HERE
+    fprintf(' alpha = %.2e     %e\n', alphalist(i-1), err(i) );
+end
+
+% plot relative error
+figure( )
+h = semilogx( [0,alphalist], err );
+ylabel('||x_{true} - x_\alpha|| / ||x_{true}||', 'FontSize', 16);
+xlabel('\alpha', 'FontSize', 20);
 
 
 
