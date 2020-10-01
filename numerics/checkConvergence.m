@@ -17,9 +17,9 @@ converged = false;
 stop = zeros(3,1);
 
 % evaluate convergence criteria
-stop(1) = iter >= maxit;
-stop(2) = norm( dfc(:) ) <= norm( df0(:) )*tol;
-stop(3) = norm( dfc(:) ) <= 1e-6;
+stop(1) = % ADD YOUR CODE HERE
+stop(2) = % ADD YOUR CODE HERE
+stop(3) = % ADD YOUR CODE HERE
 
 % if any of the convergence criteria are met, set flag
 if any ( stop ), converged = true; end
