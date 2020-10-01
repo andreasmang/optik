@@ -7,7 +7,7 @@ function [t] = doLineSearch( objfun, xc, sdir )
 %   sdir     search direction
 %
 % output:
-%   t        lin search parameter
+%   t        line search parameter
 
 % evaluate objective function
 [fc, dfc] = objfun( xc );
@@ -35,7 +35,7 @@ for i = 1 : maxit
 end
 
 % display message to user
-if ~success, disp('line search failed'); gamma = 0.0; end
+if ~success, disp('line search failed'); t = 0.0; end
 
 end % end of function
 
