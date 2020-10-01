@@ -28,9 +28,9 @@ end
 
 % initialize variables
 converged = false;
-iter  = 0;   % iteration counter
-tol   = 1e-3;
-maxit = 100; % max number of iterations
+iter  = 0;     % iteration counter
+tol   = 1e-3;  % tolerance for stopping optimization
+maxit = 100;   % max number of iterations
 
 % display iteration message
 dispIter( fc, df0, dfc, iter, 1 );
@@ -44,7 +44,9 @@ while ~converged
     gamma = doLineSearch( objfun, xc, sdir );
     if gamma ~= 0.0
         xc = xc + gamma*sdir;
-    else, break;
+    else
+        disp('line search failed');
+        break;
     end
 
     % evaluate objective function for new iterate
@@ -106,4 +108,3 @@ end % end of function
 % OPTIK --- Optimization Toolkit
 % For details see https://github.com/andreasmang/optik
 %######################################################
-
