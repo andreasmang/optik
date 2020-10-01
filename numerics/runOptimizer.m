@@ -41,13 +41,11 @@ while ~converged
     sdir = getSearchDir( objfun, xc, dfc, df0, method );
 
     % do line search
-    gamma = doLineSearch( objfun, xc, sdir );
-    if gamma ~= 0.0
-        xc = xc + gamma*sdir;
-    else
-        disp('line search failed');
-        break;
-    end
+    tc = doLineSearch( objfun, xc, sdir );
+    if ( gamma ~= 0.0 )
+        % update the variable
+        xc = xc + tc*sdir;
+    else, break; end
 
     % evaluate objective function for new iterate
     [fc, dfc] = objfun( xc );

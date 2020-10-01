@@ -1,4 +1,4 @@
-function [gamma] = doLineSearch( objfun, xc, sdir )
+function [t] = doLineSearch( objfun, xc, sdir )
 %DOLINESEARCH perform backtracking linesearch
 %
 % input:
@@ -10,8 +10,8 @@ function [gamma] = doLineSearch( objfun, xc, sdir )
 %   alpha    scale for line search
 %   success  indicates if line search was succesful
 
-% evaluate objective function
-fc = objfun( xc );
+% evaluate objective function and gradient
+[fc, dfc] = objfun( xc );
 
 % initialize flag
 success = false;
@@ -20,7 +20,8 @@ success = false;
 maxit = 24;
 
 % set initial step size
-gamma = 1.0;
+t = 1.0;
+c = 1e-4; % slope of line (armijo line search)
 
 % do linesearch
 for i = 1 : maxit
