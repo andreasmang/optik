@@ -7,10 +7,9 @@ function [t] = doLineSearch( objfun, xc, sdir )
 %   sdir     search direction
 %
 % output:
-%   alpha    scale for line search
-%   success  indicates if line search was succesful
+%   t        lin search parameter
 
-% evaluate objective function and gradient
+% evaluate objective function
 [fc, dfc] = objfun( xc );
 
 % initialize flag
@@ -21,11 +20,18 @@ maxit = 24;
 
 % set initial step size
 t = 1.0;
-c = 1e-4; % slope of line (armijo line search)
+c = 1e-4;
 
 % do linesearch
 for i = 1 : maxit
+    % evaluate objective function
+    ftrial = objfun( xc + t*sdir );
+
+    % make sure that we have a descent direction
     % ADD YOUR CODE HERE
+
+    % divide step size by 2
+    t = t / 2;
 end
 
 % display message to user
