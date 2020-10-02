@@ -12,7 +12,7 @@ function [f, df, d2f] = objFunRB( x, a )
 if nargin < 1, runSelfTest(); return; end
 
 % define default constants
-if nargin < 2, a = [2; 100]; end
+if nargin < 2, a = [1; 100]; end
 
 % evaluate objective function
 % f(x) = (a_1 - x_1)^2 + a_2(x_2 - x_1^2)^2.
