@@ -20,17 +20,17 @@ fprintf( sepstr );
 [fc, dfc] = objfun( x0 );
 df0 = dfc;
 
-
 % if initial gradient is too small, return home
 if norm( df0(:) ) <= 1e-6
+    xsol = x0;
     fprintf( 'norm(g0) = %e <= 1e-6', norm( df0(:) ) ); return;
 end
 
 % initialize variables
 converged = false;
-iter  = 0;     % iteration counter
-tol   = 1e-3;  % tolerance for stopping optimization
-maxit = 100;   % max number of iterations
+iter  = 0;   % iteration counter
+tol   = 1e-6;
+maxit = 10000; % max number of iterations
 
 % display iteration message
 dispIter( fc, df0, dfc, iter, 1 );
@@ -41,11 +41,11 @@ while ~converged
     sdir = getSearchDir( objfun, xc, dfc, df0, method );
 
     % do line search
-    tc = doLineSearch( objfun, xc, sdir );
-    if ( gamma ~= 0.0 )
-        % update the variable
-        xc = xc + tc*sdir;
-    else, break; end
+    gamma = doLineSearch( objfun, xc, sdir );
+    if gamma ~= 0.0
+        xc = xc + gamma*sdir;
+    else, break;
+    end
 
     % evaluate objective function for new iterate
     [fc, dfc] = objfun( xc );
@@ -106,3 +106,4 @@ end % end of function
 % OPTIK --- Optimization Toolkit
 % For details see https://github.com/andreasmang/optik
 %######################################################
+
