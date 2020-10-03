@@ -41,9 +41,9 @@ while ~converged
     sdir = getSearchDir( objfun, xc, dfc, df0, method );
 
     % do line search
-    gamma = doLineSearch( objfun, xc, sdir );
-    if gamma ~= 0.0
-        xc = xc + gamma*sdir;
+    tc = doLineSearch( objfun, xc, sdir );
+    if tc ~= 0.0
+        xc = xc + tc*sdir;
     else, break;
     end
 
@@ -54,7 +54,7 @@ while ~converged
     iter = iter + 1;
 
     % display iteration information
-    dispIter( fc, dfc, df0, iter, gamma );
+    dispIter( fc, dfc, df0, iter, tc );
 
     % evaluate stopping condition
     converged = checkConvergence( dfc, df0, iter, tol, maxit );
@@ -75,7 +75,7 @@ end % end of function
 
 
 %//////////////////////////////////////////////////////
-function dispIter( fc, dfc, df0, iter, gamma )
+function dispIter( fc, dfc, df0, iter, tc )
 %DISPITER display iteration log
 %
 % input:
@@ -83,7 +83,7 @@ function dispIter( fc, dfc, df0, iter, gamma )
 %   dfc    current gradient
 %   df0    initial gradient
 %   iter   iteration count
-%   gamma  step size
+%   tc     line search parameter
 
 % compute relative gradient
 ndf    = norm( dfc(:) );
@@ -93,7 +93,7 @@ if iter == 0
     fprintf('[ %-6s %-12s %-12s %-12s %-12s ]\n', 'iter','fc','||df||','||df||_rel','step');
 end
 
-fprintf('[ %-6d %12e %12e %12e %12e ]\n', iter, fc, ndf, ndfrel, gamma );
+fprintf('[ %-6d %12e %12e %12e %12e ]\n', iter, fc, ndf, ndfrel, tc );
 
 end % end of function
 %//////////////////////////////////////////////////////
