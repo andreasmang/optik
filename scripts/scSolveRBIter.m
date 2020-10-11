@@ -38,7 +38,7 @@ h.EdgeColor = 'none';
 hold on;
 plot3( xtrue(1), xtrue(2), objfun( xtrue ) ,'rx', 'MarkerSize', 10, 'LineWidth', 4 );
 plot3( xisol(1), xisol(2), objfun( xisol ) ,'kx', 'MarkerSize', 10, 'LineWidth', 4 );
-plot3( x0(1), x0(2), objfun( xisol ) ,'bx', 'MarkerSize', 10, 'LineWidth', 4 );
+plot3( x0(1), x0(2), objfun( x0 ) ,'bx', 'MarkerSize', 10, 'LineWidth', 4 );
 hold off;
 subplot(1,2,2);
 h = contour( fval, 100 );

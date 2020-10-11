@@ -1,7 +1,7 @@
 clear, close all;
 
 % define true solution
-xtrue = [ 0; 0];
+xtrue = [ 0; 0 ];
 
 % define function handle
 objfun = @(x) objFunRA( x );
