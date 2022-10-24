@@ -25,7 +25,6 @@ end % end of function
 
 
 
-%//////////////////////////////////////////////////////
 function sdir = compNewtonStep( objfun, xc, dfc, df0 )
 %COMPNEWTONSTEP compute newton step
 %
@@ -40,7 +39,6 @@ function sdir = compNewtonStep( objfun, xc, dfc, df0 )
 % ADD YOUR CODE HERE
 
 end % end of function
-%//////////////////////////////////////////////////////
 
 
 
