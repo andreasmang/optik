@@ -79,7 +79,6 @@ end % end of function
 
 
 
-%//////////////////////////////////////////////////////
 function data = readMNISTImages( filename )
 % READMNISTIMAGES read images of MNIST dataset
 %
@@ -118,12 +117,10 @@ data = data / 255.0;
 fclose( fid );
 
 end % end of function
-%//////////////////////////////////////////////////////
 
 
 
 
-%//////////////////////////////////////////////////////
 function [data, num] = readMNISTLabels( filename )
 % READMNISTLABELS read labels of MNIST dataset
 %
@@ -152,7 +149,6 @@ for i = 0 : 9
 end
 
 end % end of function
-%//////////////////////////////////////////////////////
 
 
 
